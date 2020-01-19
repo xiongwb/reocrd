@@ -7,12 +7,7 @@ import com.xwb.record.common.entity.BaseEntity;
  * @author xiongwb
  *
  */
-public class SysUser extends BaseEntity implements java.io.Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7787491069079400006L;
+public class SysUser extends BaseEntity{
 
 	private String id;
 	/** 账号 */

@@ -5,7 +5,7 @@ public class BaseEntity {
 	/** 创建人id */
 	private String createdId;
 	/** 创建时间 */
-	private String createTime;
+	private String createdTime;
 	/** 最后修改人id */
 	private String lastModifiedId;
 	/** 最后修改时间 */
@@ -23,12 +23,12 @@ public class BaseEntity {
 		this.createdId = createdId;
 	}
 
-	public String getCreateTime() {
-		return createTime;
+	public String getCreatedTime() {
+		return createdTime;
 	}
 
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime;
+	public void setCreatedTime(String createdTime) {
+		this.createdTime = createdTime;
 	}
 
 	public String getLastModifiedId() {

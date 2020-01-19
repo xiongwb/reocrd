@@ -40,3 +40,7 @@ mybatis:
    
 logging:
   config: classpath:log4j2.yml
+  level:
+    com:
+      xwb:
+        record: debug
