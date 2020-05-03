@@ -13,4 +13,6 @@ public interface UserDao {
 	public List<SysUser> getList(Map<String, Object> paramMap);
 
 	public Integer getCount();
+
+	public SysUser getUserById(String id);
 }

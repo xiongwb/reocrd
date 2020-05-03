@@ -44,3 +44,9 @@ logging:
     com:
       xwb:
         record: debug
+        
+shiro: 
+  loginUrl: /login.html
+  userNativeSessionManager: true
+  sessionManager: 
+    sessionIdUrlRewritingEnabled: false

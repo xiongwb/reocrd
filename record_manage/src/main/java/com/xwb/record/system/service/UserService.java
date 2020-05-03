@@ -31,4 +31,8 @@ public class UserService {
 	public Integer getCount() {
 		return userDao.getCount();
 	}
+
+	public SysUser getUserById(String id) {
+		return userDao.getUserById(id);
+	}
 }

@@ -19,4 +19,8 @@
 	<select id="getCount" resultType="java.lang.Integer">
 		select count(*) from sys_user
 	</select>
+	
+	<select id="getUserById" resultType="com.xwb.record.system.entity.SysUser" parameterType="java.lang.String">
+		select * from sys_user where id = #{id}
+	</select>
 </mapper>
