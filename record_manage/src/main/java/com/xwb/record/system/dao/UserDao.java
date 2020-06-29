@@ -15,4 +15,8 @@ public interface UserDao {
 	public Integer getCount();
 
 	public SysUser getUserById(String id);
+	
+	public SysUser getUserByName(String username);
+
+	public void insert(SysUser user);
 }

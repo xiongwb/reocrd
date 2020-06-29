@@ -11,11 +11,17 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.xwb.record.system.entity.SysUser;
 import com.xwb.record.system.service.UserService;
 
+/**
+ * Shiro realm 配置
+ * @author xiongwb
+ *
+ */
 public class AuthRealm extends AuthorizingRealm{
 	
 	@Autowired
@@ -39,12 +45,13 @@ public class AuthRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String principal = (String) token.getPrincipal();
-		SysUser user = userService.getUserById(principal);
+		SysUser user = userService.getUserByName(principal);
 		if(user == null) {
 			//用户不存在
 			throw new UnknownAccountException();
 		}
-		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(principal, user.getPassword(), getName());
+		SimpleAuthenticationInfo authenticationInfo = 
+				new SimpleAuthenticationInfo(principal, user.getPassword(), ByteSource.Util.bytes(user.getSalt()), getName());
         Session session = SecurityUtils.getSubject().getSession();
         session.setAttribute("USER_SESSION", user);
         return authenticationInfo;

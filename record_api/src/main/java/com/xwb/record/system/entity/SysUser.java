@@ -28,6 +28,8 @@ public class SysUser extends BaseEntity{
 	private String introduce;
 	/** 角色 0-普通用户  1-管理员 */
 	private String role;
+	/** 盐 */
+	private String salt;
 
 	public String getId() {
 		return id;
@@ -107,6 +109,14 @@ public class SysUser extends BaseEntity{
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	

@@ -16,6 +16,11 @@ import com.xwb.record.common.entity.Result;
 import com.xwb.record.system.entity.SysUser;
 import com.xwb.record.system.service.UserService;
 
+/**
+ * 用户管理
+ * @author xiongwb
+ *
+ */
 @RestController
 @RequestMapping("/sys/userController")
 public class UserController {
@@ -35,11 +40,15 @@ public class UserController {
 		return data;
 	}
 	
-	@PostMapping("/add")
-	public ResponseMessage<SysUser> add(SysUser user) {
+	@PostMapping("/signUp")
+	public ResponseMessage<SysUser> signUp(SysUser user) {
 		if(StringUtils.isBlank(user.getUsername())) {
 			return Result.error("-1", "用户名不可为空", null);
 		}
-		return Result.success("0", "保存成功", user);
+		if(StringUtils.isBlank(user.getPassword())) {
+			return Result.error("-1", "密码不可为空", null);
+		}
+		user = userService.signUp(user);
+		return Result.success("0", "注册成功", user);
 	}
 }
