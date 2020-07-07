@@ -28,7 +28,9 @@ public class SysUser extends BaseEntity{
 	private String introduce;
 	/** 角色 0-普通用户  1-管理员 */
 	private String role;
-	/** 盐 */
+	/** 状态 0-正常  1-锁定 */
+	private String status;
+	/** 盐，创建用户时的时间戳 */
 	private String salt;
 
 	public String getId() {
@@ -109,6 +111,14 @@ public class SysUser extends BaseEntity{
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getSalt() {

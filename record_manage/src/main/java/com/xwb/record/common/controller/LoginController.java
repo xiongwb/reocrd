@@ -7,6 +7,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,16 +21,13 @@ public class LoginController {
 	
 	Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+	@PostMapping("/login")
 	public ResponseMessage login(String username, String password) {
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		try {
 			subject.login(token);
 			return Result.success("0", "登录成功");
-		} catch (UnknownAccountException e) {
-			logger.info(e.getMessage(), e);
-			token.clear();
-			return Result.error("-1", "用户名或密码不正确");
 		} catch (AuthenticationException e) {
 			logger.info(e.getMessage(), e);
 			token.clear();

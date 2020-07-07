@@ -1,6 +1,13 @@
 package com.xwb.demo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.LockSupport;
@@ -119,8 +126,67 @@ public class ThreadDemo {
 		System.out.println("main thread end...");
 	}
 	
-	public static void main(String[] args) throws InterruptedException {
+	void test2() throws InterruptedException, ExecutionException {
+		Callable<String> callable = new Callable<String>() {
+			
+			@Override
+			public String call() throws Exception {
+				Thread.sleep(1000L);
+				return "callable线程";
+			}
+		};
+		
+		FutureTask<String> futureTask = new FutureTask<>(callable);
+		new Thread(futureTask).start();
+		
+		System.out.println("主线程111");
+		System.out.println(futureTask.get());
+		System.out.println("主线程222");
+	}
+	
+	void test3() throws InterruptedException, ExecutionException {
+		List<Callable<String>> list = new ArrayList<>();
+		Callable<String> callable1 = new Callable<String>() {
+			@Override
+			public String call() throws Exception {
+				Thread.sleep(1000L);
+				return "callable11111线程";
+			}
+		};
+		list.add(callable1);
+		Callable<String> callable2 = new Callable<String>() {
+			@Override
+			public String call() throws Exception {
+				Thread.sleep(1000L);
+				return "callable22222线程";
+			}
+		};
+		list.add(callable2);
+		Callable<String> callable3 = new Callable<String>() {
+			@Override
+			public String call() throws Exception {
+				Thread.sleep(1000L);
+				return "callable33333线程";
+			}
+		};
+		list.add(callable3);
+		Callable<String> callable4 = new Callable<String>() {
+			@Override
+			public String call() throws Exception {
+				Thread.sleep(1000L);
+				return "callable44444线程";
+			}
+		};
+		list.add(callable4);
+		ExecutorService executor = Executors.newFixedThreadPool(4);
+		List<Future<String>> taskList = executor.invokeAll(list);
+		for(Future<String> task : taskList) {
+			System.out.println(task.get());
+		}
+	}
+	
+	public static void main(String[] args) throws Exception {
 		ThreadDemo thread = new ThreadDemo();
-		thread.testPark();
+		thread.test3();
 	}
 }

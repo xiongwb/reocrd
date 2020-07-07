@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Dashboard",
+    "url": "javascript:;",
+    "icon": "layui-icon layui-icon-home",
+    "subMenus": [
+      {
+        "name": "控制台",
+        "url": "#/console/console1"
+      }
+    ]
+  },
+  {
+    "name": "系统管理",
+    "icon": "layui-icon layui-icon-set",
+    "url": "javascript:;",
+    "subMenus": [
+      {
+        "name": "用户管理",
+        "url": "#/system/user"
+      },
+      {
+        "name": "角色管理",
+        "url": "#/system/role"
+      },
+      {
+        "name": "权限管理",
+        "url": "#/system/authorities"
+      },
+      {
+        "name": "登录日志",
+        "url": "#/system/loginRecord"
+      }
+    ]
+  },
+  {
+    "name": "基础数据管理",
+    "url": "javascript:;",
+    "subMenus": [
+      {
+        "name": "项目管理",
+        "url": "#/basic-data/projects"
+      },
+      {
+        "name": "检验项目管理",
+        "url": "#/basic-data/test-items"
+      }
+    ]
+  }
+]
